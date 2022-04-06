@@ -4,8 +4,13 @@
     display: grid;
     height: 500px;
     width: 500px;
+    gap: 1px;
 }
 
 .cell{
     background-color:blueviolet;
+}
+
+.testing{
+    background-color: black;
 }
