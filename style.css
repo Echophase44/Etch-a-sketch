@@ -5,11 +5,11 @@
     height: 500px;
     width: 500px;
     gap: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 3px;
 }
 
-.cell{
-    background-color:blueviolet;
-}
 
 .testing{
     background-color: black;

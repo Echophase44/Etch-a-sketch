@@ -22,12 +22,28 @@ function reset(){
 test.addEventListener("click", () => {
     reset()
     makeGrid(16);
+    modifyCell();
     console.log(grid)
 });
 
-//const cell = document.querySelector(".cell")
-        
-//        cell.addEventListener("mousedown", () => {
- //           cell.style.backgroundColor = "black";
+function modifyCell(){
+    const cell = document.querySelectorAll(".cell");
+
+    for (let i = 0; i < cell.length; i++){
+        cell[i].addEventListener("mouseover", () => {
+        cell[i].style.backgroundColor = "black";
+     })
+    }
+};
 
 window.onload = makeGrid(16);
+
+/*TODO
+-move EventListener to grid creation
+-Set default settings on page load
+-Set value output for slider and link with grid creation
+-create handler for color selection
+    -add "rainbow" selection
+-Set "reset" button to remake grid based on slider value
+-Add some CSS, make this pig look pretty
+*/
