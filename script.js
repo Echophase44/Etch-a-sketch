@@ -1,9 +1,10 @@
 
 const reset = document.querySelector(".reset");
 const grid = document.querySelector(".grid");
-const defaultBrush = document.querySelector(".blkBrush")
-const rainbow = document.querySelector(".rainbow")
+const defaultBrush = document.querySelector(".blkBrush");
+const rainbow = document.querySelector(".rainbow");
 var slider = document.querySelector(".slider");
+const sliderDisplay = document.querySelector(".sliderDisplay");
 
 let currentBrush = "default";
 const defaultGrid = 16;
@@ -11,23 +12,22 @@ const defaultGrid = 16;
 
 
 function makeGrid(size){
-    grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
-    grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
+    grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
     for (let i = 0; i < size * size; i++){
         const gridCell = document.createElement('div');
         gridCell.classList.add("cell");
-        gridCell.addEventListener("mouseover", applyColor)
+        gridCell.addEventListener("mouseover", applyColor);
         grid.appendChild(gridCell);
-    };
-    
-}
+    }
+};
 
 function removeGrid(){
     while(grid.hasChildNodes()){
         grid.removeChild(grid.firstChild);
     }
-}
+};
 
 function applyColor(e){
     if (currentBrush === "default"){
@@ -39,26 +39,30 @@ function applyColor(e){
         const b = Math.floor(Math.random() *256);
         e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
     }
-}
+};
+
+function updateValue(val) {
+    slider.value=val;
+};
 
 rainbow.addEventListener("click", () => {
     currentBrush = "rainbowBrush";
-})
+});
 
 defaultBrush.addEventListener("click", () => {
-    currentBrush = "default"
-})
+    currentBrush = "default";
+});
 
 slider.addEventListener("mouseup", () =>{
-    removeGrid()
+    removeGrid();
     makeGrid(`${slider.value}`);
+    sliderDisplay.textContent = `${slider.value} x ${slider.value}`;
 })
 
 reset.addEventListener("click", () => {
     removeGrid()
     makeGrid(`${slider.value}`);
 });
-
 
 window.onload = makeGrid(defaultGrid);
 
